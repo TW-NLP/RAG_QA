@@ -1,7 +1,10 @@
 
 # RAG 项目
 
-本项目是一个基于 Retrieval-Augmented Generation (RAG) 模型的文本处理工具，包含重排序（Rerank）、相似度匹配（Similarity Matching）、文本分割（Text Splitting）等功能。
+本项目是一个基于 Retrieval-Augmented Generation (RAG) 模型的文本处理工具，主要用于文本检索与生成，包含以下功能模块：
+- **重排序（Rerank）**：对检索结果进行重新排序，以提高结果的相关性。
+- **相似度匹配（Similarity Matching）**：基于嵌入模型计算文本的相似度。
+- **文本分割（Text Splitting）**：将长文本分割为适合处理的较小段落。
 
 ## 目录结构
 
@@ -25,7 +28,6 @@
 │   └── pdf                   # PDF 文档存储
 │       ├── AF01.pdf          # 示例 PDF 文件
 │       └── ...               # 其他 PDF 文件
-├── demo.py                   # 项目演示脚本
 ├── main.py                   # 主运行脚本
 ├── pre_model                 # 预训练模型
 │   ├── embedding_model       # 嵌入模型目录
@@ -49,6 +51,10 @@
    ```bash
    pip install -r requirements.txt
    ```
+
+3. 模型权重下载：
+   - 需要从 [huggingface.co](https://huggingface.co/BAAI/bge-large-zh-v1.5) 下载 `pytorch_model.bin` 文件，并放入 `pre_model/embedding_model/bge-large-zh` 目录下。
+   - 需要从 [huggingface.co](https://huggingface.co/BAAI/bge-reranker-large) 下载 `pytorch_model.bin` 文件，并放入 `pre_model/rerank_model/rerank_large` 目录下。
 
 ## 使用说明
 
