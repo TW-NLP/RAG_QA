@@ -22,7 +22,7 @@
 ├── config.py                 # 项目配置文件
 ├── data
 │   ├── doc                   # 文档存储目录
-│   │   └── 四种通知的层级体系.docx # 示例文档
+│   │   └── pycharm.docx # 示例文档
 │   ├── index                 # 索引数据目录
 │   │   └── data.index        # 索引文件
 │   └── pdf                   # PDF 文档存储
