@@ -12,11 +12,13 @@ SEARCH_TOPK = 20
 RESULT_TOPK = 10
 
 
-class EmbeddingConfig():
+class EmbeddingConfig(object):
     embedding_path = os.path.join(PROJECT_DIR, 'pre_model', 'embedding_model')
     bge_zh_large = os.path.join(embedding_path, 'bge-large-zh')
 
 
-class ReRankConfig():
+class ReRankConfig(object):
     rerank_path = os.path.join(PROJECT_DIR, 'pre_model', 'rerank_model')
     rerank_large = os.path.join(rerank_path, 'rerank_large')
+
+

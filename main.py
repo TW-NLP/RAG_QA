@@ -1,5 +1,8 @@
 import os
 from sentence_transformers import SentenceTransformer
+
+from app.rerank.model import ReRankModel
+from app.sim_match.model import SimMatchModel
 from app.text_split.split import TextSplit
 from config import PDF_DATA_DIR, DOC_DATA_DIR, EmbeddingConfig, ReRankConfig, FAISS_SAVE_DIR, SEARCH_TOPK, RESULT_TOPK
 from tqdm import tqdm
@@ -11,7 +14,7 @@ from rank_bm25 import BM25Okapi
 
 
 class RAGDocQA(object):
-    def __init__(self, data_path_list, embedding_path, rerank_path):
+    def __init__(self, data_path_list):
         """RAG document QA
 
         Args:
@@ -22,8 +25,8 @@ class RAGDocQA(object):
 
         self.data_path_list = data_path_list
         self.text_split = TextSplit()
-        self.embedding_model = SentenceTransformer(embedding_path)
-        self.rerank_model = FlagReranker(rerank_path, use_fp16=True)
+        self.sim_model = SimMatchModel()
+        self.rank_model = ReRankModel()
 
     def vector_search(self, query, data_list):
         """use vector search
@@ -39,7 +42,7 @@ class RAGDocQA(object):
         index = faiss.read_index(FAISS_SAVE_DIR)
 
         # 将查询文本编码为嵌入向量
-        query_embedding = self.embedding_model.encode([query], normalize_embeddings=True)
+        query_embedding = self.sim_model.embedding_model.encode([query], normalize_embeddings=True)
 
         # 进行最近邻搜索，返回前 3 个相似的文本
         D, I = index.search(np.array(query_embedding), SEARCH_TOPK)
@@ -76,7 +79,7 @@ class RAGDocQA(object):
         """
         # 将 query 与 passages 进行 rerank
         inputs = [[query, passage] for passage in passages]
-        scores = self.rerank_model.compute_score(inputs)
+        scores = self.rank_model.rerank_model.compute_score(inputs)
         return scores
 
     def search(self, query, bm25, data_list):
@@ -104,7 +107,7 @@ class RAGDocQA(object):
 
         embeddings = []
         for data_i in tqdm(data_list):
-            embedding_i = self.embedding_model.encode(data_i, normalize_embeddings=True)
+            embedding_i = self.sim_model.embedding_model.encode(data_i, normalize_embeddings=True)
             embeddings.append(embedding_i)
 
         embeddings = np.array(embeddings)
@@ -137,6 +140,7 @@ class RAGDocQA(object):
 
         # 文档的处理方式，可以进行如下的选择
         for path_i in os.listdir(pdf_path):
+
             pdf_result = self.text_split.pdf_split(os.path.join(pdf_path, path_i))
             data_sum.extend(pdf_result)
 
@@ -151,12 +155,9 @@ class RAGDocQA(object):
 if __name__ == '__main__':
     data_path = [PDF_DATA_DIR, DOC_DATA_DIR]
 
-    embedding_path = EmbeddingConfig.bge_zh_large
-    rerank_path = ReRankConfig.rerank_large
-
     query = "网络安全是什么？"
 
-    qa_model = RAGDocQA(data_path, embedding_path, rerank_path)
+    qa_model = RAGDocQA(data_path)
     # 文件向量化
     print("***文本持久化中*****")
     bm25, data_sum = qa_model.data_convert()

@@ -25,14 +25,13 @@ class TextSplit(object):
 
     def doc_split(self, file_path):
 
-        data_sum = []
-
         doc = Document(file_path)
 
         data_sum = self.paragraph_split(doc)
         return data_sum
 
     def pdf_split(self, file_path):
+        docx_file_name = ""
         try:
             pdf_dir = os.path.dirname(file_path)
 
