@@ -45,8 +45,8 @@
 
 1. 克隆本项目代码：
    ```bash
-   git clone https://github.com/yourusername/rag_project.git
-   cd rag_project
+   git clone https://github.com/TW-NLP/RAG_QA
+   cd RAG_QA
    ```
 
 2. 安装依赖：
