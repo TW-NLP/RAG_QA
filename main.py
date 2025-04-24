@@ -140,7 +140,6 @@ class RAGDocQA(object):
 
         # 文档的处理方式，可以进行如下的选择
         for path_i in os.listdir(pdf_path):
-
             pdf_result = self.text_split.pdf_split(os.path.join(pdf_path, path_i))
             data_sum.extend(pdf_result)
 
