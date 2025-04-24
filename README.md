@@ -44,6 +44,8 @@
 <p align="center">
   <img src="images/传统RAG.drawio.png" alt="传统RAG" width="800"/>
 </p>
+
+
 ## 安装
 
 1. 克隆本项目代码：
