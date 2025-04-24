@@ -42,7 +42,7 @@
 ```
 项目线路如下：
 <p align="center">
-  <img src="images/传统RAG.drawio.png" alt="传统RAG" width="400"/>
+  <img src="images/传统RAG.drawio.png" alt="传统RAG" width="800"/>
 </p>
 ## 安装
 
