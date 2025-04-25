@@ -30,7 +30,7 @@
 
 3. 模型权重下载：
    - 需要从 [huggingface.co](https://huggingface.co/BAAI/bge-large-zh-v1.5) 下载 `pytorch_model.bin` 文件，并放入 `pre_model/embedding_model/bge-large-zh` 目录下。
-   - 需要从 [huggingface.co](https://huggingface.co/BAAI/bge-reranker-large) 下载 `pytorch_model.bin` 文件，并放入 `pre_model/rerank_model/rerank_large` 目录下。
+   - 需要从 [huggingface.co](https://huggingface.co/BAAI/bge-reranker-large) 下载 `pytorch_model.bin` 文件，并放入 `pre_model/rerank_model/bge_rerank` 目录下。
 
 ## 使用说明
 
