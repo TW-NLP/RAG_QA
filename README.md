@@ -8,39 +8,8 @@
 
 本项目可以处理多种数据源，比如非结构化的PDF、Docx等，通过切片和排序等策略，获取与问题最相关的答案，并集成VLLM来对开源的大模型进行推理。
 
-## 目录结构
+## 项目线路
 
-项目的主要代码和文件组织如下：
-
-```
-├── app
-│   ├── rerank                # 重排序模块
-│   │   └── model.py          # 重排序模型代码
-│   ├── sim_match             # 相似度匹配模块
-│   │   └── model.py          # 相似度匹配模型代码
-│   └── text_split            # 文本分割模块
-│       ├── __pycache__       # Python 缓存文件
-│       └── split.py          # 文本分割实现
-├── config.py                 # 项目配置文件
-├── data
-│   ├── doc                   # 文档存储目录
-│   │   └── pycharm.docx # 示例文档
-│   ├── index                 # 索引数据目录
-│   │   └── data.index        # 索引文件
-│   └── pdf                   # PDF 文档存储
-│       ├── AF01.pdf          # 示例 PDF 文件
-│       └── ...               # 其他 PDF 文件
-├── main.py                   # 主运行脚本
-├── pre_model                 # 预训练模型
-│   ├── embedding_model       # 嵌入模型目录
-│   │   └── bge-large-zh      # 中文大规模嵌入模型
-│   │       └── ...           # 嵌入模型相关文件
-│   └── rerank_model          # 重排序模型目录
-│       └── rerank_large      # 大规模重排序模型
-│           └── ...           # 重排序模型相关文件
-└── requirements.txt          # 项目依赖文件
-```
-项目线路如下：
 <p align="center">
   <img src="images/传统RAG.drawio.png" alt="传统RAG" width="800"/>
 </p>

@@ -1,4 +1,8 @@
 import os
+import logging
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger("RAG_QA")
 
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -19,6 +23,6 @@ class EmbeddingConfig(object):
 
 class ReRankConfig(object):
     rerank_path = os.path.join(PROJECT_DIR, 'pre_model', 'rerank_model')
-    rerank_large = os.path.join(rerank_path, 'rerank_large')
+    rerank_large = os.path.join(rerank_path, 'bge_rerank')
 
 
